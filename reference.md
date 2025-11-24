@@ -1,6 +1,6 @@
 # Reference
 ## Imdb
-<details><summary><code>client.imdb.<a href="/src/api/resources/imdb/client/Client.ts">createMovie</a>({ ...params }) -> FernSampleApi.MovieId</code></summary>
+<details><summary><code>client.imdb.<a href="/src/api/resources/imdb/client/Client.ts">createMovie</a>({ ...params }) -> FernReleaseFlowTest.MovieId</code></summary>
 <dl>
 <dd>
 
@@ -46,7 +46,7 @@ await client.imdb.createMovie({
 <dl>
 <dd>
 
-**request:** `FernSampleApi.CreateMovieRequest` 
+**request:** `FernReleaseFlowTest.CreateMovieRequest` 
     
 </dd>
 </dl>
@@ -66,7 +66,7 @@ await client.imdb.createMovie({
 </dl>
 </details>
 
-<details><summary><code>client.imdb.<a href="/src/api/resources/imdb/client/Client.ts">getMovie</a>(id) -> FernSampleApi.Movie</code></summary>
+<details><summary><code>client.imdb.<a href="/src/api/resources/imdb/client/Client.ts">getMovie</a>(id) -> FernReleaseFlowTest.Movie</code></summary>
 <dl>
 <dd>
 
@@ -109,7 +109,7 @@ await client.imdb.getMovie("tt0111161");
 <dl>
 <dd>
 
-**id:** `FernSampleApi.MovieId` 
+**id:** `FernReleaseFlowTest.MovieId` 
     
 </dd>
 </dl>

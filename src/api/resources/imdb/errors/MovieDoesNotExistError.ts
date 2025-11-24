@@ -2,10 +2,10 @@
 
 import type * as core from "../../../../core/index.js";
 import * as errors from "../../../../errors/index.js";
-import type * as FernSampleApi from "../../../index.js";
+import type * as FernReleaseFlowTest from "../../../index.js";
 
-export class MovieDoesNotExistError extends errors.FernSampleApiError {
-    constructor(body: FernSampleApi.MovieId, rawResponse?: core.RawResponse) {
+export class MovieDoesNotExistError extends errors.FernReleaseFlowTestError {
+    constructor(body: FernReleaseFlowTest.MovieId, rawResponse?: core.RawResponse) {
         super({
             message: "MovieDoesNotExistError",
             statusCode: 404,

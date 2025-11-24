@@ -4,17 +4,17 @@ import { ImdbClient } from "./api/resources/imdb/client/Client.js";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient.js";
 import { normalizeClientOptions } from "./BaseClient.js";
 
-export declare namespace FernSampleApiClient {
+export declare namespace FernReleaseFlowTestClient {
     export interface Options extends BaseClientOptions {}
 
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
-export class FernSampleApiClient {
-    protected readonly _options: FernSampleApiClient.Options;
+export class FernReleaseFlowTestClient {
+    protected readonly _options: FernReleaseFlowTestClient.Options;
     protected _imdb: ImdbClient | undefined;
 
-    constructor(options: FernSampleApiClient.Options) {
+    constructor(options: FernReleaseFlowTestClient.Options) {
         this._options = normalizeClientOptions(options);
     }
 

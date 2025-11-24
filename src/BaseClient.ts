@@ -36,9 +36,9 @@ export function normalizeClientOptions<T extends BaseClientOptions>(options: T):
     const headers = mergeHeaders(
         {
             "X-Fern-Language": "JavaScript",
-            "X-Fern-SDK-Name": "",
-            "X-Fern-SDK-Version": "0.0.5",
-            "User-Agent": "/0.0.5",
+            "X-Fern-SDK-Name": "fern-ts-sdk-release-flow",
+            "X-Fern-SDK-Version": "0.0.6",
+            "User-Agent": "fern-ts-sdk-release-flow/0.0.6",
             "X-Fern-Runtime": core.RUNTIME.type,
             "X-Fern-Runtime-Version": core.RUNTIME.version,
         },
