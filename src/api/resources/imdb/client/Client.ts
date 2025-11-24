@@ -5,7 +5,7 @@ import { normalizeClientOptions } from "../../../../BaseClient.js";
 import { mergeHeaders } from "../../../../core/headers.js";
 import * as core from "../../../../core/index.js";
 import * as errors from "../../../../errors/index.js";
-import * as FernSampleApi from "../../../index.js";
+import * as FernReleaseFlowTest from "../../../index.js";
 
 export declare namespace ImdbClient {
     export interface Options extends BaseClientOptions {}
@@ -23,7 +23,7 @@ export class ImdbClient {
     /**
      * Add a movie to the database
      *
-     * @param {FernSampleApi.CreateMovieRequest} request
+     * @param {FernReleaseFlowTest.CreateMovieRequest} request
      * @param {ImdbClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
@@ -33,16 +33,16 @@ export class ImdbClient {
      *     })
      */
     public createMovie(
-        request: FernSampleApi.CreateMovieRequest,
+        request: FernReleaseFlowTest.CreateMovieRequest,
         requestOptions?: ImdbClient.RequestOptions,
-    ): core.HttpResponsePromise<FernSampleApi.MovieId> {
+    ): core.HttpResponsePromise<FernReleaseFlowTest.MovieId> {
         return core.HttpResponsePromise.fromPromise(this.__createMovie(request, requestOptions));
     }
 
     private async __createMovie(
-        request: FernSampleApi.CreateMovieRequest,
+        request: FernReleaseFlowTest.CreateMovieRequest,
         requestOptions?: ImdbClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernSampleApi.MovieId>> {
+    ): Promise<core.WithRawResponse<FernReleaseFlowTest.MovieId>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(
@@ -63,11 +63,11 @@ export class ImdbClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernSampleApi.MovieId, rawResponse: _response.rawResponse };
+            return { data: _response.body as FernReleaseFlowTest.MovieId, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.FernSampleApiError({
+            throw new errors.FernReleaseFlowTestError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
                 rawResponse: _response.rawResponse,
@@ -76,15 +76,17 @@ export class ImdbClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernSampleApiError({
+                throw new errors.FernReleaseFlowTestError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernSampleApiTimeoutError("Timeout exceeded when calling POST /movies/create-movie.");
+                throw new errors.FernReleaseFlowTestTimeoutError(
+                    "Timeout exceeded when calling POST /movies/create-movie.",
+                );
             case "unknown":
-                throw new errors.FernSampleApiError({
+                throw new errors.FernReleaseFlowTestError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -94,10 +96,10 @@ export class ImdbClient {
     /**
      * Retrieve a movie from the database based on the ID
      *
-     * @param {FernSampleApi.MovieId} id
+     * @param {FernReleaseFlowTest.MovieId} id
      * @param {ImdbClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernSampleApi.MovieDoesNotExistError}
+     * @throws {@link FernReleaseFlowTest.MovieDoesNotExistError}
      *
      * @example
      *     await client.imdb.getMovie("tt0111161")
@@ -106,16 +108,16 @@ export class ImdbClient {
      *     await client.imdb.getMovie("tt1234")
      */
     public getMovie(
-        id: FernSampleApi.MovieId,
+        id: FernReleaseFlowTest.MovieId,
         requestOptions?: ImdbClient.RequestOptions,
-    ): core.HttpResponsePromise<FernSampleApi.Movie> {
+    ): core.HttpResponsePromise<FernReleaseFlowTest.Movie> {
         return core.HttpResponsePromise.fromPromise(this.__getMovie(id, requestOptions));
     }
 
     private async __getMovie(
-        id: FernSampleApi.MovieId,
+        id: FernReleaseFlowTest.MovieId,
         requestOptions?: ImdbClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernSampleApi.Movie>> {
+    ): Promise<core.WithRawResponse<FernReleaseFlowTest.Movie>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(
@@ -133,18 +135,18 @@ export class ImdbClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernSampleApi.Movie, rawResponse: _response.rawResponse };
+            return { data: _response.body as FernReleaseFlowTest.Movie, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new FernSampleApi.MovieDoesNotExistError(
-                        _response.error.body as FernSampleApi.MovieId,
+                    throw new FernReleaseFlowTest.MovieDoesNotExistError(
+                        _response.error.body as FernReleaseFlowTest.MovieId,
                         _response.rawResponse,
                     );
                 default:
-                    throw new errors.FernSampleApiError({
+                    throw new errors.FernReleaseFlowTestError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -154,15 +156,15 @@ export class ImdbClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernSampleApiError({
+                throw new errors.FernReleaseFlowTestError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernSampleApiTimeoutError("Timeout exceeded when calling GET /movies/{id}.");
+                throw new errors.FernReleaseFlowTestTimeoutError("Timeout exceeded when calling GET /movies/{id}.");
             case "unknown":
-                throw new errors.FernSampleApiError({
+                throw new errors.FernReleaseFlowTestError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });

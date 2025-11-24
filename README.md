@@ -1,14 +1,14 @@
 # FernSample TypeScript Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Frehanalam%2Ffern-ts-sdk-releasef-flow)
-[![npm shield](https://img.shields.io/npm/v/)](https://www.npmjs.com/package/)
+[![npm shield](https://img.shields.io/npm/v/fern-ts-sdk-release-flow)](https://www.npmjs.com/package/fern-ts-sdk-release-flow)
 
 The FernSample TypeScript library provides convenient access to the FernSample APIs from TypeScript.
 
 ## Installation
 
 ```sh
-npm i -s 
+npm i -s fern-ts-sdk-release-flow
 ```
 
 ## Reference
@@ -20,9 +20,9 @@ A full reference for this library is available [here](https://github.com/rehanal
 Instantiate and use the client with the following:
 
 ```typescript
-import { FernSampleApiClient } from "";
+import { FernReleaseFlowTestClient } from "fern-ts-sdk-release-flow";
 
-const client = new FernSampleApiClient({ environment: "YOUR_BASE_URL" });
+const client = new FernReleaseFlowTestClient({ environment: "YOUR_BASE_URL" });
 await client.imdb.createMovie({
     title: "title",
     rating: 1.1
@@ -35,12 +35,12 @@ When the API returns a non-success status code (4xx or 5xx response), a subclass
 will be thrown.
 
 ```typescript
-import { FernSampleApiError } from "FernSampleApi";
+import { FernReleaseFlowTestError } from "fern-ts-sdk-release-flow";
 
 try {
     await client.imdb.createMovie(...);
 } catch (err) {
-    if (err instanceof FernSampleApiError) {
+    if (err instanceof FernReleaseFlowTestError) {
         console.log(err.statusCode);
         console.log(err.message);
         console.log(err.body);
@@ -134,9 +134,9 @@ console.log(rawResponse.headers['X-My-Header']);
 The SDK supports logging. You can configure the logger by passing in a `logging` object to the client options.
 
 ```typescript
-import { FernSampleApiClient, logging } from "FernSampleApi";
+import { FernReleaseFlowTestClient, logging } from "fern-ts-sdk-release-flow";
 
-const client = new FernSampleApiClient({
+const client = new FernReleaseFlowTestClient({
     ...
     logging: {
         level: logging.LogLevel.Debug, // defaults to logging.LogLevel.Info
@@ -212,9 +212,9 @@ The SDK provides a way for you to customize the underlying HTTP client / Fetch f
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript
-import { FernSampleApiClient } from "FernSampleApi";
+import { FernReleaseFlowTestClient } from "fern-ts-sdk-release-flow";
 
-const client = new FernSampleApiClient({
+const client = new FernReleaseFlowTestClient({
     ...
     fetcher: // provide your implementation here
 });
