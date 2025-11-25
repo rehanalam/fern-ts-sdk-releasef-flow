@@ -1,6 +1,6 @@
 {
     "name": "fern-release-flow-with-petstore",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "private": false,
     "repository": "github:rehanalam/fern-ts-sdk-releasef-flow",
     "type": "commonjs",

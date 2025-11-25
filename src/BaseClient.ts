@@ -43,8 +43,8 @@ export function normalizeClientOptions<T extends BaseClientOptions>(options: T):
         {
             "X-Fern-Language": "JavaScript",
             "X-Fern-SDK-Name": "fern-release-flow-with-petstore",
-            "X-Fern-SDK-Version": "0.0.2",
-            "User-Agent": "fern-release-flow-with-petstore/0.0.2",
+            "X-Fern-SDK-Version": "0.0.3",
+            "User-Agent": "fern-release-flow-with-petstore/0.0.3",
             "X-Fern-Runtime": core.RUNTIME.type,
             "X-Fern-Runtime-Version": core.RUNTIME.version,
             api_key: options?.apiKey,
