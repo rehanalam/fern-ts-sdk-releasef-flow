@@ -3,7 +3,7 @@
 import type * as core from "../../core/index.js";
 import * as errors from "../../errors/index.js";
 
-export class UnprocessableEntityError extends errors.FernPerstoreReleaseFlowApiError {
+export class UnprocessableEntityError extends errors.PetStoreError {
     constructor(body?: unknown, rawResponse?: core.RawResponse) {
         super({
             message: "UnprocessableEntityError",

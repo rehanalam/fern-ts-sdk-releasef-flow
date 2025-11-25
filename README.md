@@ -1,14 +1,14 @@
 # FernPerstoreReleaseFlow TypeScript Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Frehanalam%2Ffern-ts-sdk-releasef-flow)
-[![npm shield](https://img.shields.io/npm/v/)](https://www.npmjs.com/package/)
+[![npm shield](https://img.shields.io/npm/v/fern-release-flow-with-petstore)](https://www.npmjs.com/package/fern-release-flow-with-petstore)
 
 The FernPerstoreReleaseFlow TypeScript library provides convenient access to the FernPerstoreReleaseFlow APIs from TypeScript.
 
 ## Installation
 
 ```sh
-npm i -s 
+npm i -s fern-release-flow-with-petstore
 ```
 
 ## Reference
@@ -20,9 +20,9 @@ A full reference for this library is available [here](https://github.com/rehanal
 Instantiate and use the client with the following:
 
 ```typescript
-import { FernPerstoreReleaseFlowApiClient } from "";
+import { PetStoreClient } from "fern-release-flow-with-petstore";
 
-const client = new FernPerstoreReleaseFlowApiClient({ token: "YOUR_TOKEN", apiKey: "YOUR_API_KEY" });
+const client = new PetStoreClient({ token: "YOUR_TOKEN", apiKey: "YOUR_API_KEY" });
 await client.pet.addPet({
     name: "doggie",
     photoUrls: ["photoUrls"]
@@ -35,9 +35,9 @@ The SDK exports all request and response types as TypeScript interfaces. Simply 
 following namespace:
 
 ```typescript
-import { FernPerstoreReleaseFlowApi } from "FernPerstoreReleaseFlowApi";
+import { PetStore } from "fern-release-flow-with-petstore";
 
-const request: FernPerstoreReleaseFlowApi.FindPetsByStatusRequest = {
+const request: PetStore.FindPetsByStatusRequest = {
     ...
 };
 ```
@@ -48,12 +48,12 @@ When the API returns a non-success status code (4xx or 5xx response), a subclass
 will be thrown.
 
 ```typescript
-import { FernPerstoreReleaseFlowApiError } from "FernPerstoreReleaseFlowApi";
+import { PetStoreError } from "fern-release-flow-with-petstore";
 
 try {
     await client.pet.addPet(...);
 } catch (err) {
-    if (err instanceof FernPerstoreReleaseFlowApiError) {
+    if (err instanceof PetStoreError) {
         console.log(err.statusCode);
         console.log(err.message);
         console.log(err.body);
@@ -192,9 +192,9 @@ console.log(rawResponse.headers['X-My-Header']);
 The SDK supports logging. You can configure the logger by passing in a `logging` object to the client options.
 
 ```typescript
-import { FernPerstoreReleaseFlowApiClient, logging } from "FernPerstoreReleaseFlowApi";
+import { PetStoreClient, logging } from "fern-release-flow-with-petstore";
 
-const client = new FernPerstoreReleaseFlowApiClient({
+const client = new PetStoreClient({
     ...
     logging: {
         level: logging.LogLevel.Debug, // defaults to logging.LogLevel.Info
@@ -270,9 +270,9 @@ The SDK provides a way for you to customize the underlying HTTP client / Fetch f
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript
-import { FernPerstoreReleaseFlowApiClient } from "FernPerstoreReleaseFlowApi";
+import { PetStoreClient } from "fern-release-flow-with-petstore";
 
-const client = new FernPerstoreReleaseFlowApiClient({
+const client = new PetStoreClient({
     ...
     fetcher: // provide your implementation here
 });

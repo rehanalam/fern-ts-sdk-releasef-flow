@@ -6,19 +6,19 @@ import { UserClient } from "./api/resources/user/client/Client.js";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient.js";
 import { normalizeClientOptions } from "./BaseClient.js";
 
-export declare namespace FernPerstoreReleaseFlowApiClient {
+export declare namespace PetStoreClient {
     export interface Options extends BaseClientOptions {}
 
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
-export class FernPerstoreReleaseFlowApiClient {
-    protected readonly _options: FernPerstoreReleaseFlowApiClient.Options;
+export class PetStoreClient {
+    protected readonly _options: PetStoreClient.Options;
     protected _pet: PetClient | undefined;
     protected _store: StoreClient | undefined;
     protected _user: UserClient | undefined;
 
-    constructor(options: FernPerstoreReleaseFlowApiClient.Options) {
+    constructor(options: PetStoreClient.Options) {
         this._options = normalizeClientOptions(options);
     }
 
