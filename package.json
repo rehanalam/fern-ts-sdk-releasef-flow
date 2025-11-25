@@ -1,8 +1,17 @@
 {
     "name": "fern-release-flow-with-petstore",
     "version": "0.0.2",
+    "description": "Petstore API SDK generated manually from Fern output",
     "private": false,
-    "repository": "github:rehanalam/fern-ts-sdk-releasef-flow",
+    "publishConfig": {
+      "access": "public"
+    },
+    "author": "Rehan",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rehanalam/fern-ts-sdk-releasef-flow.git"
+    },
     "type": "commonjs",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.mjs",
