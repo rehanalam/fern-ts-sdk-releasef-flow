@@ -5,7 +5,7 @@ import * as core from "./core/index.js";
 import type * as environments from "./environments.js";
 
 export interface BaseClientOptions {
-    environment?: core.Supplier<environments.FernPerstoreReleaseFlowApiEnvironment | string>;
+    environment?: core.Supplier<environments.PetStoreEnvironment | string>;
     /** Specify a custom URL to connect the client to. */
     baseUrl?: core.Supplier<string>;
     token?: core.Supplier<core.BearerToken | undefined>;
@@ -42,9 +42,9 @@ export function normalizeClientOptions<T extends BaseClientOptions>(options: T):
     const headers = mergeHeaders(
         {
             "X-Fern-Language": "JavaScript",
-            "X-Fern-SDK-Name": "",
-            "X-Fern-SDK-Version": "0.0.1",
-            "User-Agent": "/0.0.1",
+            "X-Fern-SDK-Name": "fern-release-flow-with-petstore",
+            "X-Fern-SDK-Version": "0.0.2",
+            "User-Agent": "fern-release-flow-with-petstore/0.0.2",
             "X-Fern-Runtime": core.RUNTIME.type,
             "X-Fern-Runtime-Version": core.RUNTIME.version,
             api_key: options?.apiKey,

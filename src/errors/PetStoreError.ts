@@ -3,7 +3,7 @@
 import type * as core from "../core/index.js";
 import { toJson } from "../core/json.js";
 
-export class FernPerstoreReleaseFlowApiError extends Error {
+export class PetStoreError extends Error {
     public readonly statusCode?: number;
     public readonly body?: unknown;
     public readonly rawResponse?: core.RawResponse;
@@ -20,7 +20,7 @@ export class FernPerstoreReleaseFlowApiError extends Error {
         rawResponse?: core.RawResponse;
     }) {
         super(buildMessage({ message, statusCode, body }));
-        Object.setPrototypeOf(this, FernPerstoreReleaseFlowApiError.prototype);
+        Object.setPrototypeOf(this, PetStoreError.prototype);
         this.statusCode = statusCode;
         this.body = body;
         this.rawResponse = rawResponse;

@@ -1,6 +1,6 @@
 # Reference
 ## pet
-<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">addPet</a>({ ...params }) -> FernPerstoreReleaseFlowApi.Pet</code></summary>
+<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">addPet</a>({ ...params }) -> PetStore.Pet</code></summary>
 <dl>
 <dd>
 
@@ -46,7 +46,7 @@ await client.pet.addPet({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.Pet` 
+**request:** `PetStore.Pet` 
     
 </dd>
 </dl>
@@ -66,7 +66,7 @@ await client.pet.addPet({
 </dl>
 </details>
 
-<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">updatePet</a>({ ...params }) -> FernPerstoreReleaseFlowApi.Pet</code></summary>
+<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">updatePet</a>({ ...params }) -> PetStore.Pet</code></summary>
 <dl>
 <dd>
 
@@ -112,7 +112,7 @@ await client.pet.updatePet({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.Pet` 
+**request:** `PetStore.Pet` 
     
 </dd>
 </dl>
@@ -132,7 +132,7 @@ await client.pet.updatePet({
 </dl>
 </details>
 
-<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">findPetsByStatus</a>({ ...params }) -> FernPerstoreReleaseFlowApi.Pet[]</code></summary>
+<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">findPetsByStatus</a>({ ...params }) -> PetStore.Pet[]</code></summary>
 <dl>
 <dd>
 
@@ -177,7 +177,7 @@ await client.pet.findPetsByStatus({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.FindPetsByStatusRequest` 
+**request:** `PetStore.FindPetsByStatusRequest` 
     
 </dd>
 </dl>
@@ -197,7 +197,7 @@ await client.pet.findPetsByStatus({
 </dl>
 </details>
 
-<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">findPetsByTags</a>({ ...params }) -> FernPerstoreReleaseFlowApi.Pet[]</code></summary>
+<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">findPetsByTags</a>({ ...params }) -> PetStore.Pet[]</code></summary>
 <dl>
 <dd>
 
@@ -240,7 +240,7 @@ await client.pet.findPetsByTags();
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.FindPetsByTagsRequest` 
+**request:** `PetStore.FindPetsByTagsRequest` 
     
 </dd>
 </dl>
@@ -260,7 +260,7 @@ await client.pet.findPetsByTags();
 </dl>
 </details>
 
-<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">getPetById</a>({ ...params }) -> FernPerstoreReleaseFlowApi.Pet</code></summary>
+<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">getPetById</a>({ ...params }) -> PetStore.Pet</code></summary>
 <dl>
 <dd>
 
@@ -305,7 +305,7 @@ await client.pet.getPetById({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.GetPetByIdRequest` 
+**request:** `PetStore.GetPetByIdRequest` 
     
 </dd>
 </dl>
@@ -325,7 +325,7 @@ await client.pet.getPetById({
 </dl>
 </details>
 
-<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">updatePetWithForm</a>({ ...params }) -> FernPerstoreReleaseFlowApi.Pet</code></summary>
+<details><summary><code>client.pet.<a href="/src/api/resources/pet/client/Client.ts">updatePetWithForm</a>({ ...params }) -> PetStore.Pet</code></summary>
 <dl>
 <dd>
 
@@ -370,7 +370,7 @@ await client.pet.updatePetWithForm({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.UpdatePetWithFormRequest` 
+**request:** `PetStore.UpdatePetWithFormRequest` 
     
 </dd>
 </dl>
@@ -435,7 +435,7 @@ await client.pet.deletePet({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.DeletePetRequest` 
+**request:** `PetStore.DeletePetRequest` 
     
 </dd>
 </dl>
@@ -511,7 +511,7 @@ await client.store.getInventory();
 </dl>
 </details>
 
-<details><summary><code>client.store.<a href="/src/api/resources/store/client/Client.ts">placeOrder</a>({ ...params }) -> FernPerstoreReleaseFlowApi.Order</code></summary>
+<details><summary><code>client.store.<a href="/src/api/resources/store/client/Client.ts">placeOrder</a>({ ...params }) -> PetStore.Order</code></summary>
 <dl>
 <dd>
 
@@ -554,7 +554,7 @@ await client.store.placeOrder({});
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.Order` 
+**request:** `PetStore.Order` 
     
 </dd>
 </dl>
@@ -574,7 +574,7 @@ await client.store.placeOrder({});
 </dl>
 </details>
 
-<details><summary><code>client.store.<a href="/src/api/resources/store/client/Client.ts">getOrderById</a>({ ...params }) -> FernPerstoreReleaseFlowApi.Order</code></summary>
+<details><summary><code>client.store.<a href="/src/api/resources/store/client/Client.ts">getOrderById</a>({ ...params }) -> PetStore.Order</code></summary>
 <dl>
 <dd>
 
@@ -619,7 +619,7 @@ await client.store.getOrderById({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.GetOrderByIdRequest` 
+**request:** `PetStore.GetOrderByIdRequest` 
     
 </dd>
 </dl>
@@ -684,7 +684,7 @@ await client.store.deleteOrder({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.DeleteOrderRequest` 
+**request:** `PetStore.DeleteOrderRequest` 
     
 </dd>
 </dl>
@@ -705,7 +705,7 @@ await client.store.deleteOrder({
 </details>
 
 ## user
-<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">createUser</a>({ ...params }) -> FernPerstoreReleaseFlowApi.User</code></summary>
+<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">createUser</a>({ ...params }) -> PetStore.User</code></summary>
 <dl>
 <dd>
 
@@ -748,7 +748,7 @@ await client.user.createUser({});
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.User` 
+**request:** `PetStore.User` 
     
 </dd>
 </dl>
@@ -768,7 +768,7 @@ await client.user.createUser({});
 </dl>
 </details>
 
-<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">createUsersWithListInput</a>({ ...params }) -> FernPerstoreReleaseFlowApi.User</code></summary>
+<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">createUsersWithListInput</a>({ ...params }) -> PetStore.User</code></summary>
 <dl>
 <dd>
 
@@ -811,7 +811,7 @@ await client.user.createUsersWithListInput([{}]);
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.User[]` 
+**request:** `PetStore.User[]` 
     
 </dd>
 </dl>
@@ -874,7 +874,7 @@ await client.user.loginUser();
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.LoginUserRequest` 
+**request:** `PetStore.LoginUserRequest` 
     
 </dd>
 </dl>
@@ -949,7 +949,7 @@ await client.user.logoutUser();
 </dl>
 </details>
 
-<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">getUserByName</a>({ ...params }) -> FernPerstoreReleaseFlowApi.User</code></summary>
+<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">getUserByName</a>({ ...params }) -> PetStore.User</code></summary>
 <dl>
 <dd>
 
@@ -994,7 +994,7 @@ await client.user.getUserByName({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.GetUserByNameRequest` 
+**request:** `PetStore.GetUserByNameRequest` 
     
 </dd>
 </dl>
@@ -1060,7 +1060,7 @@ await client.user.updateUser({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.UpdateUserRequest` 
+**request:** `PetStore.UpdateUserRequest` 
     
 </dd>
 </dl>
@@ -1125,7 +1125,7 @@ await client.user.deleteUser({
 <dl>
 <dd>
 
-**request:** `FernPerstoreReleaseFlowApi.DeleteUserRequest` 
+**request:** `PetStore.DeleteUserRequest` 
     
 </dd>
 </dl>

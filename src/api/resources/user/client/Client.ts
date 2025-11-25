@@ -6,7 +6,7 @@ import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.
 import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import * as errors from "../../../../errors/index.js";
-import * as FernPerstoreReleaseFlowApi from "../../../index.js";
+import * as PetStore from "../../../index.js";
 
 export declare namespace UserClient {
     export interface Options extends BaseClientOptions {}
@@ -27,23 +27,23 @@ export class UserClient {
     /**
      * This can only be done by the logged in user.
      *
-     * @param {FernPerstoreReleaseFlowApi.User} request
+     * @param {PetStore.User} request
      * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.user.createUser({})
      */
     public createUser(
-        request: FernPerstoreReleaseFlowApi.User,
+        request: PetStore.User,
         requestOptions?: UserClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.User> {
+    ): core.HttpResponsePromise<PetStore.User> {
         return core.HttpResponsePromise.fromPromise(this.__createUser(request, requestOptions));
     }
 
     private async __createUser(
-        request: FernPerstoreReleaseFlowApi.User,
+        request: PetStore.User,
         requestOptions?: UserClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.User>> {
+    ): Promise<core.WithRawResponse<PetStore.User>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             this._options?.headers,
             mergeOnlyDefinedHeaders({ api_key: requestOptions?.apiKey ?? this._options?.apiKey }),
@@ -53,7 +53,7 @@ export class UserClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 "user",
             ),
             method: "POST",
@@ -69,11 +69,11 @@ export class UserClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernPerstoreReleaseFlowApi.User, rawResponse: _response.rawResponse };
+            return { data: _response.body as PetStore.User, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.FernPerstoreReleaseFlowApiError({
+            throw new errors.PetStoreError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
                 rawResponse: _response.rawResponse,
@@ -82,15 +82,15 @@ export class UserClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError("Timeout exceeded when calling POST /user.");
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling POST /user.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -100,23 +100,23 @@ export class UserClient {
     /**
      * Creates list of users with given input array.
      *
-     * @param {FernPerstoreReleaseFlowApi.User[]} request
+     * @param {PetStore.User[]} request
      * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.user.createUsersWithListInput([{}])
      */
     public createUsersWithListInput(
-        request: FernPerstoreReleaseFlowApi.User[],
+        request: PetStore.User[],
         requestOptions?: UserClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.User> {
+    ): core.HttpResponsePromise<PetStore.User> {
         return core.HttpResponsePromise.fromPromise(this.__createUsersWithListInput(request, requestOptions));
     }
 
     private async __createUsersWithListInput(
-        request: FernPerstoreReleaseFlowApi.User[],
+        request: PetStore.User[],
         requestOptions?: UserClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.User>> {
+    ): Promise<core.WithRawResponse<PetStore.User>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             this._options?.headers,
             mergeOnlyDefinedHeaders({ api_key: requestOptions?.apiKey ?? this._options?.apiKey }),
@@ -126,7 +126,7 @@ export class UserClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 "user/createWithList",
             ),
             method: "POST",
@@ -142,11 +142,11 @@ export class UserClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernPerstoreReleaseFlowApi.User, rawResponse: _response.rawResponse };
+            return { data: _response.body as PetStore.User, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.FernPerstoreReleaseFlowApiError({
+            throw new errors.PetStoreError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
                 rawResponse: _response.rawResponse,
@@ -155,17 +155,15 @@ export class UserClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling POST /user/createWithList.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling POST /user/createWithList.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -175,23 +173,23 @@ export class UserClient {
     /**
      * Log into the system.
      *
-     * @param {FernPerstoreReleaseFlowApi.LoginUserRequest} request
+     * @param {PetStore.LoginUserRequest} request
      * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
+     * @throws {@link PetStore.BadRequestError}
      *
      * @example
      *     await client.user.loginUser()
      */
     public loginUser(
-        request: FernPerstoreReleaseFlowApi.LoginUserRequest = {},
+        request: PetStore.LoginUserRequest = {},
         requestOptions?: UserClient.RequestOptions,
     ): core.HttpResponsePromise<string> {
         return core.HttpResponsePromise.fromPromise(this.__loginUser(request, requestOptions));
     }
 
     private async __loginUser(
-        request: FernPerstoreReleaseFlowApi.LoginUserRequest = {},
+        request: PetStore.LoginUserRequest = {},
         requestOptions?: UserClient.RequestOptions,
     ): Promise<core.WithRawResponse<string>> {
         const { username, password } = request;
@@ -213,7 +211,7 @@ export class UserClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 "user/login",
             ),
             method: "GET",
@@ -232,12 +230,9 @@ export class UserClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -247,17 +242,15 @@ export class UserClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling GET /user/login.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling GET /user/login.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -286,7 +279,7 @@ export class UserClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 "user/logout",
             ),
             method: "GET",
@@ -303,7 +296,7 @@ export class UserClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.FernPerstoreReleaseFlowApiError({
+            throw new errors.PetStoreError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
                 rawResponse: _response.rawResponse,
@@ -312,17 +305,15 @@ export class UserClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling GET /user/logout.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling GET /user/logout.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -332,11 +323,11 @@ export class UserClient {
     /**
      * Get user detail based on username.
      *
-     * @param {FernPerstoreReleaseFlowApi.GetUserByNameRequest} request
+     * @param {PetStore.GetUserByNameRequest} request
      * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
-     * @throws {@link FernPerstoreReleaseFlowApi.NotFoundError}
+     * @throws {@link PetStore.BadRequestError}
+     * @throws {@link PetStore.NotFoundError}
      *
      * @example
      *     await client.user.getUserByName({
@@ -344,16 +335,16 @@ export class UserClient {
      *     })
      */
     public getUserByName(
-        request: FernPerstoreReleaseFlowApi.GetUserByNameRequest,
+        request: PetStore.GetUserByNameRequest,
         requestOptions?: UserClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.User> {
+    ): core.HttpResponsePromise<PetStore.User> {
         return core.HttpResponsePromise.fromPromise(this.__getUserByName(request, requestOptions));
     }
 
     private async __getUserByName(
-        request: FernPerstoreReleaseFlowApi.GetUserByNameRequest,
+        request: PetStore.GetUserByNameRequest,
         requestOptions?: UserClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.User>> {
+    ): Promise<core.WithRawResponse<PetStore.User>> {
         const { username } = request;
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             this._options?.headers,
@@ -364,7 +355,7 @@ export class UserClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 `user/${core.url.encodePathParam(username)}`,
             ),
             method: "GET",
@@ -377,23 +368,17 @@ export class UserClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernPerstoreReleaseFlowApi.User, rawResponse: _response.rawResponse };
+            return { data: _response.body as PetStore.User, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
-                    throw new FernPerstoreReleaseFlowApi.NotFoundError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -403,17 +388,15 @@ export class UserClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling GET /user/{username}.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling GET /user/{username}.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -423,11 +406,11 @@ export class UserClient {
     /**
      * This can only be done by the logged in user.
      *
-     * @param {FernPerstoreReleaseFlowApi.UpdateUserRequest} request
+     * @param {PetStore.UpdateUserRequest} request
      * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
-     * @throws {@link FernPerstoreReleaseFlowApi.NotFoundError}
+     * @throws {@link PetStore.BadRequestError}
+     * @throws {@link PetStore.NotFoundError}
      *
      * @example
      *     await client.user.updateUser({
@@ -436,14 +419,14 @@ export class UserClient {
      *     })
      */
     public updateUser(
-        request: FernPerstoreReleaseFlowApi.UpdateUserRequest,
+        request: PetStore.UpdateUserRequest,
         requestOptions?: UserClient.RequestOptions,
     ): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__updateUser(request, requestOptions));
     }
 
     private async __updateUser(
-        request: FernPerstoreReleaseFlowApi.UpdateUserRequest,
+        request: PetStore.UpdateUserRequest,
         requestOptions?: UserClient.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
         const { username, body: _body } = request;
@@ -456,7 +439,7 @@ export class UserClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 `user/${core.url.encodePathParam(username)}`,
             ),
             method: "PUT",
@@ -478,17 +461,11 @@ export class UserClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
-                    throw new FernPerstoreReleaseFlowApi.NotFoundError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -498,17 +475,15 @@ export class UserClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling PUT /user/{username}.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling PUT /user/{username}.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -518,11 +493,11 @@ export class UserClient {
     /**
      * This can only be done by the logged in user.
      *
-     * @param {FernPerstoreReleaseFlowApi.DeleteUserRequest} request
+     * @param {PetStore.DeleteUserRequest} request
      * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
-     * @throws {@link FernPerstoreReleaseFlowApi.NotFoundError}
+     * @throws {@link PetStore.BadRequestError}
+     * @throws {@link PetStore.NotFoundError}
      *
      * @example
      *     await client.user.deleteUser({
@@ -530,14 +505,14 @@ export class UserClient {
      *     })
      */
     public deleteUser(
-        request: FernPerstoreReleaseFlowApi.DeleteUserRequest,
+        request: PetStore.DeleteUserRequest,
         requestOptions?: UserClient.RequestOptions,
     ): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__deleteUser(request, requestOptions));
     }
 
     private async __deleteUser(
-        request: FernPerstoreReleaseFlowApi.DeleteUserRequest,
+        request: PetStore.DeleteUserRequest,
         requestOptions?: UserClient.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
         const { username } = request;
@@ -550,7 +525,7 @@ export class UserClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 `user/${core.url.encodePathParam(username)}`,
             ),
             method: "DELETE",
@@ -569,17 +544,11 @@ export class UserClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
-                    throw new FernPerstoreReleaseFlowApi.NotFoundError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -589,17 +558,15 @@ export class UserClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling DELETE /user/{username}.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling DELETE /user/{username}.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
