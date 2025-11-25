@@ -1,6 +1,6 @@
 {
-    "name": "fern-ts-sdk-release-flow",
-    "version": "0.0.8",
+    "name": "",
+    "version": "0.0.1",
     "private": false,
     "repository": "github:rehanalam/fern-ts-sdk-releasef-flow",
     "type": "commonjs",

@@ -1,8 +1,5 @@
 {
-    "cliVersion": "2.4.1",
+    "cliVersion": "2.6.0",
     "generatorName": "fernapi/fern-typescript-sdk",
-    "generatorVersion": "3.33.1",
-    "generatorConfig": {
-        "namespaceExport": "FernReleaseFlowTest"
-    }
+    "generatorVersion": "3.33.1"
 }

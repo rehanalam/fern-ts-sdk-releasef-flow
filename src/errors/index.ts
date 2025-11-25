@@ -1,2 +1,2 @@
-export { FernReleaseFlowTestError } from "./FernReleaseFlowTestError.js";
-export { FernReleaseFlowTestTimeoutError } from "./FernReleaseFlowTestTimeoutError.js";
+export { FernPerstoreReleaseFlowApiError } from "./FernPerstoreReleaseFlowApiError.js";
+export { FernPerstoreReleaseFlowApiTimeoutError } from "./FernPerstoreReleaseFlowApiTimeoutError.js";

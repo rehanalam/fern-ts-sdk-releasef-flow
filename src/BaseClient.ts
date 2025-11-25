@@ -2,11 +2,15 @@
 
 import { mergeHeaders } from "./core/headers.js";
 import * as core from "./core/index.js";
+import type * as environments from "./environments.js";
 
 export interface BaseClientOptions {
-    environment: core.Supplier<string>;
+    environment?: core.Supplier<environments.FernPerstoreReleaseFlowApiEnvironment | string>;
     /** Specify a custom URL to connect the client to. */
     baseUrl?: core.Supplier<string>;
+    token?: core.Supplier<core.BearerToken | undefined>;
+    /** Override the api_key header */
+    apiKey: core.Supplier<string>;
     /** Additional headers to include in requests. */
     headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     /** The default maximum time to wait for a response in seconds. */
@@ -26,6 +30,8 @@ export interface BaseRequestOptions {
     maxRetries?: number;
     /** A hook to abort the request. */
     abortSignal?: AbortSignal;
+    /** Override the api_key header */
+    apiKey?: string;
     /** Additional query string parameters to include in the request. */
     queryParams?: Record<string, unknown>;
     /** Additional headers to include in the request. */
@@ -36,11 +42,12 @@ export function normalizeClientOptions<T extends BaseClientOptions>(options: T):
     const headers = mergeHeaders(
         {
             "X-Fern-Language": "JavaScript",
-            "X-Fern-SDK-Name": "fern-ts-sdk-release-flow",
-            "X-Fern-SDK-Version": "0.0.8",
-            "User-Agent": "fern-ts-sdk-release-flow/0.0.8",
+            "X-Fern-SDK-Name": "",
+            "X-Fern-SDK-Version": "0.0.1",
+            "User-Agent": "/0.0.1",
             "X-Fern-Runtime": core.RUNTIME.type,
             "X-Fern-Runtime-Version": core.RUNTIME.version,
+            api_key: options?.apiKey,
         },
         options?.headers,
     );

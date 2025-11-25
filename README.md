@@ -1,14 +1,14 @@
-# FernSample TypeScript Library
+# FernPerstoreReleaseFlow TypeScript Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Frehanalam%2Ffern-ts-sdk-releasef-flow)
-[![npm shield](https://img.shields.io/npm/v/fern-ts-sdk-release-flow)](https://www.npmjs.com/package/fern-ts-sdk-release-flow)
+[![npm shield](https://img.shields.io/npm/v/)](https://www.npmjs.com/package/)
 
-The FernSample TypeScript library provides convenient access to the FernSample APIs from TypeScript.
+The FernPerstoreReleaseFlow TypeScript library provides convenient access to the FernPerstoreReleaseFlow APIs from TypeScript.
 
 ## Installation
 
 ```sh
-npm i -s fern-ts-sdk-release-flow
+npm i -s 
 ```
 
 ## Reference
@@ -20,13 +20,26 @@ A full reference for this library is available [here](https://github.com/rehanal
 Instantiate and use the client with the following:
 
 ```typescript
-import { FernReleaseFlowTestClient } from "fern-ts-sdk-release-flow";
+import { FernPerstoreReleaseFlowApiClient } from "";
 
-const client = new FernReleaseFlowTestClient({ environment: "YOUR_BASE_URL" });
-await client.imdb.createMovie({
-    title: "title",
-    rating: 1.1
+const client = new FernPerstoreReleaseFlowApiClient({ token: "YOUR_TOKEN", apiKey: "YOUR_API_KEY" });
+await client.pet.addPet({
+    name: "doggie",
+    photoUrls: ["photoUrls"]
 });
+```
+
+## Request And Response Types
+
+The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
+following namespace:
+
+```typescript
+import { FernPerstoreReleaseFlowApi } from "FernPerstoreReleaseFlowApi";
+
+const request: FernPerstoreReleaseFlowApi.FindPetsByStatusRequest = {
+    ...
+};
 ```
 
 ## Exception Handling
@@ -35,12 +48,12 @@ When the API returns a non-success status code (4xx or 5xx response), a subclass
 will be thrown.
 
 ```typescript
-import { FernReleaseFlowTestError } from "fern-ts-sdk-release-flow";
+import { FernPerstoreReleaseFlowApiError } from "FernPerstoreReleaseFlowApi";
 
 try {
-    await client.imdb.createMovie(...);
+    await client.pet.addPet(...);
 } catch (err) {
-    if (err instanceof FernReleaseFlowTestError) {
+    if (err instanceof FernPerstoreReleaseFlowApiError) {
         console.log(err.statusCode);
         console.log(err.message);
         console.log(err.body);
@@ -49,6 +62,51 @@ try {
 }
 ```
 
+## File Uploads
+
+You can upload files using the client:
+
+```typescript
+import { createReadStream } from "fs";
+
+await client.pet.uploadFile(createReadStream("path/to/file"), ...);
+await client.pet.uploadFile(new ReadableStream(), ...);
+await client.pet.uploadFile(Buffer.from('binary data'), ...);
+await client.pet.uploadFile(new Blob(['binary data'], { type: 'audio/mpeg' }), ...);
+await client.pet.uploadFile(new File(['binary data'], 'file.mp3'), ...);
+await client.pet.uploadFile(new ArrayBuffer(8), ...);
+await client.pet.uploadFile(new Uint8Array([0, 1, 2]), ...);
+```
+The client accepts a variety of types for file upload parameters:
+* Stream types: `fs.ReadStream`, `stream.Readable`, and `ReadableStream`
+* Buffered types: `Buffer`, `Blob`, `File`, `ArrayBuffer`, `ArrayBufferView`, and `Uint8Array`
+
+### Metadata
+
+You can configure metadata when uploading a file:
+```typescript
+const file: Uploadable.WithMetadata = {
+    data: createReadStream("path/to/file"),
+    filename: "my-file",       // optional
+    contentType: "audio/mpeg", // optional
+    contentLength: 1949,       // optional
+};
+```
+
+Alternatively, you can upload a file directly from a file path:
+```typescript
+const file : Uploadable.FromPath = {
+    path: "path/to/file",
+    filename: "my-file",        // optional
+    contentType: "audio/mpeg",  // optional
+    contentLength: 1949,        // optional
+};
+```
+
+The metadata is used to set the `Content-Length`, `Content-Type`, and `Content-Disposition` headers. If not provided, the client will attempt to determine them automatically.
+For example, `fs.ReadStream` has a `path` property which the SDK uses to retrieve the file size from the filesystem without loading it into memory.
+
+
 ## Advanced
 
 ### Additional Headers
@@ -56,7 +114,7 @@ try {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
-const response = await client.imdb.createMovie(..., {
+const response = await client.pet.addPet(..., {
     headers: {
         'X-Custom-Header': 'custom value'
     }
@@ -68,7 +126,7 @@ const response = await client.imdb.createMovie(..., {
 If you would like to send additional query string parameters as part of the request, use the `queryParams` request option.
 
 ```typescript
-const response = await client.imdb.createMovie(..., {
+const response = await client.pet.addPet(..., {
     queryParams: {
         'customQueryParamKey': 'custom query param value'
     }
@@ -90,7 +148,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.imdb.createMovie(..., {
+const response = await client.pet.addPet(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -100,7 +158,7 @@ const response = await client.imdb.createMovie(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.imdb.createMovie(..., {
+const response = await client.pet.addPet(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -111,7 +169,7 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.imdb.createMovie(..., {
+const response = await client.pet.addPet(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request
@@ -123,7 +181,7 @@ The SDK provides access to raw response data, including headers, through the `.w
 The `.withRawResponse()` method returns a promise that results to an object with a `data` and a `rawResponse` property.
 
 ```typescript
-const { data, rawResponse } = await client.imdb.createMovie(...).withRawResponse();
+const { data, rawResponse } = await client.pet.addPet(...).withRawResponse();
 
 console.log(data);
 console.log(rawResponse.headers['X-My-Header']);
@@ -134,9 +192,9 @@ console.log(rawResponse.headers['X-My-Header']);
 The SDK supports logging. You can configure the logger by passing in a `logging` object to the client options.
 
 ```typescript
-import { FernReleaseFlowTestClient, logging } from "fern-ts-sdk-release-flow";
+import { FernPerstoreReleaseFlowApiClient, logging } from "FernPerstoreReleaseFlowApi";
 
-const client = new FernReleaseFlowTestClient({
+const client = new FernPerstoreReleaseFlowApiClient({
     ...
     logging: {
         level: logging.LogLevel.Debug, // defaults to logging.LogLevel.Info
@@ -212,9 +270,9 @@ The SDK provides a way for you to customize the underlying HTTP client / Fetch f
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript
-import { FernReleaseFlowTestClient } from "fern-ts-sdk-release-flow";
+import { FernPerstoreReleaseFlowApiClient } from "FernPerstoreReleaseFlowApi";
 
-const client = new FernReleaseFlowTestClient({
+const client = new FernPerstoreReleaseFlowApiClient({
     ...
     fetcher: // provide your implementation here
 });
