@@ -4,6 +4,7 @@ export const FindPetsByStatusRequestStatus = {
     Available: "available",
     Pending: "pending",
     Sold: "sold",
+    Upcoming: "upcoming",
 } as const;
 export type FindPetsByStatusRequestStatus =
     (typeof FindPetsByStatusRequestStatus)[keyof typeof FindPetsByStatusRequestStatus];
