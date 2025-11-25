@@ -6,7 +6,7 @@ import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.
 import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import * as errors from "../../../../errors/index.js";
-import * as FernPerstoreReleaseFlowApi from "../../../index.js";
+import * as PetStore from "../../../index.js";
 
 export declare namespace PetClient {
     export interface Options extends BaseClientOptions {}
@@ -27,11 +27,11 @@ export class PetClient {
     /**
      * Add a new pet to the store.
      *
-     * @param {FernPerstoreReleaseFlowApi.Pet} request
+     * @param {PetStore.Pet} request
      * @param {PetClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
-     * @throws {@link FernPerstoreReleaseFlowApi.UnprocessableEntityError}
+     * @throws {@link PetStore.BadRequestError}
+     * @throws {@link PetStore.UnprocessableEntityError}
      *
      * @example
      *     await client.pet.addPet({
@@ -40,16 +40,16 @@ export class PetClient {
      *     })
      */
     public addPet(
-        request: FernPerstoreReleaseFlowApi.Pet,
+        request: PetStore.Pet,
         requestOptions?: PetClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.Pet> {
+    ): core.HttpResponsePromise<PetStore.Pet> {
         return core.HttpResponsePromise.fromPromise(this.__addPet(request, requestOptions));
     }
 
     private async __addPet(
-        request: FernPerstoreReleaseFlowApi.Pet,
+        request: PetStore.Pet,
         requestOptions?: PetClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.Pet>> {
+    ): Promise<core.WithRawResponse<PetStore.Pet>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             this._options?.headers,
             mergeOnlyDefinedHeaders({
@@ -62,7 +62,7 @@ export class PetClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 "pet",
             ),
             method: "POST",
@@ -78,23 +78,17 @@ export class PetClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernPerstoreReleaseFlowApi.Pet, rawResponse: _response.rawResponse };
+            return { data: _response.body as PetStore.Pet, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
-                    throw new FernPerstoreReleaseFlowApi.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.UnprocessableEntityError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -104,15 +98,15 @@ export class PetClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError("Timeout exceeded when calling POST /pet.");
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling POST /pet.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -122,12 +116,12 @@ export class PetClient {
     /**
      * Update an existing pet by Id.
      *
-     * @param {FernPerstoreReleaseFlowApi.Pet} request
+     * @param {PetStore.Pet} request
      * @param {PetClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
-     * @throws {@link FernPerstoreReleaseFlowApi.NotFoundError}
-     * @throws {@link FernPerstoreReleaseFlowApi.UnprocessableEntityError}
+     * @throws {@link PetStore.BadRequestError}
+     * @throws {@link PetStore.NotFoundError}
+     * @throws {@link PetStore.UnprocessableEntityError}
      *
      * @example
      *     await client.pet.updatePet({
@@ -136,16 +130,16 @@ export class PetClient {
      *     })
      */
     public updatePet(
-        request: FernPerstoreReleaseFlowApi.Pet,
+        request: PetStore.Pet,
         requestOptions?: PetClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.Pet> {
+    ): core.HttpResponsePromise<PetStore.Pet> {
         return core.HttpResponsePromise.fromPromise(this.__updatePet(request, requestOptions));
     }
 
     private async __updatePet(
-        request: FernPerstoreReleaseFlowApi.Pet,
+        request: PetStore.Pet,
         requestOptions?: PetClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.Pet>> {
+    ): Promise<core.WithRawResponse<PetStore.Pet>> {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             this._options?.headers,
             mergeOnlyDefinedHeaders({
@@ -158,7 +152,7 @@ export class PetClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 "pet",
             ),
             method: "PUT",
@@ -174,28 +168,19 @@ export class PetClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernPerstoreReleaseFlowApi.Pet, rawResponse: _response.rawResponse };
+            return { data: _response.body as PetStore.Pet, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
-                    throw new FernPerstoreReleaseFlowApi.NotFoundError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
-                    throw new FernPerstoreReleaseFlowApi.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.UnprocessableEntityError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -205,15 +190,15 @@ export class PetClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError("Timeout exceeded when calling PUT /pet.");
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling PUT /pet.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -223,10 +208,10 @@ export class PetClient {
     /**
      * Multiple status values can be provided with comma separated strings.
      *
-     * @param {FernPerstoreReleaseFlowApi.FindPetsByStatusRequest} request
+     * @param {PetStore.FindPetsByStatusRequest} request
      * @param {PetClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
+     * @throws {@link PetStore.BadRequestError}
      *
      * @example
      *     await client.pet.findPetsByStatus({
@@ -234,16 +219,16 @@ export class PetClient {
      *     })
      */
     public findPetsByStatus(
-        request: FernPerstoreReleaseFlowApi.FindPetsByStatusRequest,
+        request: PetStore.FindPetsByStatusRequest,
         requestOptions?: PetClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.Pet[]> {
+    ): core.HttpResponsePromise<PetStore.Pet[]> {
         return core.HttpResponsePromise.fromPromise(this.__findPetsByStatus(request, requestOptions));
     }
 
     private async __findPetsByStatus(
-        request: FernPerstoreReleaseFlowApi.FindPetsByStatusRequest,
+        request: PetStore.FindPetsByStatusRequest,
         requestOptions?: PetClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.Pet[]>> {
+    ): Promise<core.WithRawResponse<PetStore.Pet[]>> {
         const { status } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams.status = status;
@@ -259,7 +244,7 @@ export class PetClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 "pet/findByStatus",
             ),
             method: "GET",
@@ -272,18 +257,15 @@ export class PetClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernPerstoreReleaseFlowApi.Pet[], rawResponse: _response.rawResponse };
+            return { data: _response.body as PetStore.Pet[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -293,17 +275,15 @@ export class PetClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling GET /pet/findByStatus.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling GET /pet/findByStatus.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -313,25 +293,25 @@ export class PetClient {
     /**
      * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      *
-     * @param {FernPerstoreReleaseFlowApi.FindPetsByTagsRequest} request
+     * @param {PetStore.FindPetsByTagsRequest} request
      * @param {PetClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
+     * @throws {@link PetStore.BadRequestError}
      *
      * @example
      *     await client.pet.findPetsByTags()
      */
     public findPetsByTags(
-        request: FernPerstoreReleaseFlowApi.FindPetsByTagsRequest = {},
+        request: PetStore.FindPetsByTagsRequest = {},
         requestOptions?: PetClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.Pet[]> {
+    ): core.HttpResponsePromise<PetStore.Pet[]> {
         return core.HttpResponsePromise.fromPromise(this.__findPetsByTags(request, requestOptions));
     }
 
     private async __findPetsByTags(
-        request: FernPerstoreReleaseFlowApi.FindPetsByTagsRequest = {},
+        request: PetStore.FindPetsByTagsRequest = {},
         requestOptions?: PetClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.Pet[]>> {
+    ): Promise<core.WithRawResponse<PetStore.Pet[]>> {
         const { tags } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (tags != null) {
@@ -354,7 +334,7 @@ export class PetClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 "pet/findByTags",
             ),
             method: "GET",
@@ -367,18 +347,15 @@ export class PetClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernPerstoreReleaseFlowApi.Pet[], rawResponse: _response.rawResponse };
+            return { data: _response.body as PetStore.Pet[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -388,17 +365,15 @@ export class PetClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling GET /pet/findByTags.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling GET /pet/findByTags.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -408,11 +383,11 @@ export class PetClient {
     /**
      * Returns a single pet.
      *
-     * @param {FernPerstoreReleaseFlowApi.GetPetByIdRequest} request
+     * @param {PetStore.GetPetByIdRequest} request
      * @param {PetClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
-     * @throws {@link FernPerstoreReleaseFlowApi.NotFoundError}
+     * @throws {@link PetStore.BadRequestError}
+     * @throws {@link PetStore.NotFoundError}
      *
      * @example
      *     await client.pet.getPetById({
@@ -420,16 +395,16 @@ export class PetClient {
      *     })
      */
     public getPetById(
-        request: FernPerstoreReleaseFlowApi.GetPetByIdRequest,
+        request: PetStore.GetPetByIdRequest,
         requestOptions?: PetClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.Pet> {
+    ): core.HttpResponsePromise<PetStore.Pet> {
         return core.HttpResponsePromise.fromPromise(this.__getPetById(request, requestOptions));
     }
 
     private async __getPetById(
-        request: FernPerstoreReleaseFlowApi.GetPetByIdRequest,
+        request: PetStore.GetPetByIdRequest,
         requestOptions?: PetClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.Pet>> {
+    ): Promise<core.WithRawResponse<PetStore.Pet>> {
         const { petId } = request;
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             this._options?.headers,
@@ -443,7 +418,7 @@ export class PetClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 `pet/${core.url.encodePathParam(petId)}`,
             ),
             method: "GET",
@@ -456,23 +431,17 @@ export class PetClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernPerstoreReleaseFlowApi.Pet, rawResponse: _response.rawResponse };
+            return { data: _response.body as PetStore.Pet, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
-                    throw new FernPerstoreReleaseFlowApi.NotFoundError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -482,17 +451,15 @@ export class PetClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling GET /pet/{petId}.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling GET /pet/{petId}.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -502,10 +469,10 @@ export class PetClient {
     /**
      * Updates a pet resource based on the form data.
      *
-     * @param {FernPerstoreReleaseFlowApi.UpdatePetWithFormRequest} request
+     * @param {PetStore.UpdatePetWithFormRequest} request
      * @param {PetClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
+     * @throws {@link PetStore.BadRequestError}
      *
      * @example
      *     await client.pet.updatePetWithForm({
@@ -513,16 +480,16 @@ export class PetClient {
      *     })
      */
     public updatePetWithForm(
-        request: FernPerstoreReleaseFlowApi.UpdatePetWithFormRequest,
+        request: PetStore.UpdatePetWithFormRequest,
         requestOptions?: PetClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.Pet> {
+    ): core.HttpResponsePromise<PetStore.Pet> {
         return core.HttpResponsePromise.fromPromise(this.__updatePetWithForm(request, requestOptions));
     }
 
     private async __updatePetWithForm(
-        request: FernPerstoreReleaseFlowApi.UpdatePetWithFormRequest,
+        request: PetStore.UpdatePetWithFormRequest,
         requestOptions?: PetClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.Pet>> {
+    ): Promise<core.WithRawResponse<PetStore.Pet>> {
         const { petId, name, status } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (name != null) {
@@ -545,7 +512,7 @@ export class PetClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 `pet/${core.url.encodePathParam(petId)}`,
             ),
             method: "POST",
@@ -558,18 +525,15 @@ export class PetClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as FernPerstoreReleaseFlowApi.Pet, rawResponse: _response.rawResponse };
+            return { data: _response.body as PetStore.Pet, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -579,17 +543,15 @@ export class PetClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling POST /pet/{petId}.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling POST /pet/{petId}.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -599,10 +561,10 @@ export class PetClient {
     /**
      * Delete a pet.
      *
-     * @param {FernPerstoreReleaseFlowApi.DeletePetRequest} request
+     * @param {PetStore.DeletePetRequest} request
      * @param {PetClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
+     * @throws {@link PetStore.BadRequestError}
      *
      * @example
      *     await client.pet.deletePet({
@@ -610,14 +572,14 @@ export class PetClient {
      *     })
      */
     public deletePet(
-        request: FernPerstoreReleaseFlowApi.DeletePetRequest,
+        request: PetStore.DeletePetRequest,
         requestOptions?: PetClient.RequestOptions,
     ): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__deletePet(request, requestOptions));
     }
 
     private async __deletePet(
-        request: FernPerstoreReleaseFlowApi.DeletePetRequest,
+        request: PetStore.DeletePetRequest,
         requestOptions?: PetClient.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
         const { petId } = request;
@@ -633,7 +595,7 @@ export class PetClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 `pet/${core.url.encodePathParam(petId)}`,
             ),
             method: "DELETE",
@@ -652,12 +614,9 @@ export class PetClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -667,17 +626,15 @@ export class PetClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling DELETE /pet/{petId}.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling DELETE /pet/{petId}.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
@@ -689,27 +646,27 @@ export class PetClient {
      *
      * @param {core.file.Uploadable} uploadable
      * @param {number} petId
-     * @param {FernPerstoreReleaseFlowApi.UploadFileRequest} request
+     * @param {PetStore.UploadFileRequest} request
      * @param {PetClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link FernPerstoreReleaseFlowApi.BadRequestError}
-     * @throws {@link FernPerstoreReleaseFlowApi.NotFoundError}
+     * @throws {@link PetStore.BadRequestError}
+     * @throws {@link PetStore.NotFoundError}
      */
     public uploadFile(
         uploadable: core.file.Uploadable,
         petId: number,
-        request: FernPerstoreReleaseFlowApi.UploadFileRequest,
+        request: PetStore.UploadFileRequest,
         requestOptions?: PetClient.RequestOptions,
-    ): core.HttpResponsePromise<FernPerstoreReleaseFlowApi.ApiResponse> {
+    ): core.HttpResponsePromise<PetStore.ApiResponse> {
         return core.HttpResponsePromise.fromPromise(this.__uploadFile(uploadable, petId, request, requestOptions));
     }
 
     private async __uploadFile(
         uploadable: core.file.Uploadable,
         petId: number,
-        request: FernPerstoreReleaseFlowApi.UploadFileRequest,
+        request: PetStore.UploadFileRequest,
         requestOptions?: PetClient.RequestOptions,
-    ): Promise<core.WithRawResponse<FernPerstoreReleaseFlowApi.ApiResponse>> {
+    ): Promise<core.WithRawResponse<PetStore.ApiResponse>> {
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (request.additionalMetadata != null) {
             _queryParams.additionalMetadata = request.additionalMetadata;
@@ -729,7 +686,7 @@ export class PetClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
-                    environments.FernPerstoreReleaseFlowApiEnvironment.Default,
+                    environments.PetStoreEnvironment.Default,
                 `pet/${core.url.encodePathParam(petId)}/uploadImage`,
             ),
             method: "POST",
@@ -746,26 +703,17 @@ export class PetClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return {
-                data: _response.body as FernPerstoreReleaseFlowApi.ApiResponse,
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as PetStore.ApiResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new FernPerstoreReleaseFlowApi.BadRequestError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
-                    throw new FernPerstoreReleaseFlowApi.NotFoundError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                    throw new PetStore.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
-                    throw new errors.FernPerstoreReleaseFlowApiError({
+                    throw new errors.PetStoreError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                         rawResponse: _response.rawResponse,
@@ -775,17 +723,15 @@ export class PetClient {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.FernPerstoreReleaseFlowApiTimeoutError(
-                    "Timeout exceeded when calling POST /pet/{petId}/uploadImage.",
-                );
+                throw new errors.PetStoreTimeoutError("Timeout exceeded when calling POST /pet/{petId}/uploadImage.");
             case "unknown":
-                throw new errors.FernPerstoreReleaseFlowApiError({
+                throw new errors.PetStoreError({
                     message: _response.error.errorMessage,
                     rawResponse: _response.rawResponse,
                 });
